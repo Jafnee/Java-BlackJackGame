@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package blackjackgame.model;
+package blackjackgame.model.cards;
 
 /**
  *
  * @author Jafnee
  */
-public class PlayerHand {
+public class Card {
     
 }

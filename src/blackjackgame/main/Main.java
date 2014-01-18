@@ -10,13 +10,16 @@ package blackjackgame.main;
  *
  * @author Jafnee
  */
-public class Main {
+public class Main 
+{
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) 
+    {
+        Game game = new Game();
+        game.startGame();
     }
     
 }

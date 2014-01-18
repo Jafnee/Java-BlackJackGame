@@ -4,12 +4,20 @@
  * and open the template in the editor.
  */
 
-package blackjackgame.model;
+package blackjackgame.model.computer;
+
+import blackjackgame.main.Game;
+import blackjackgame.model.cards.Hand;
 
 /**
  *
  * @author Jafnee
  */
-public class ComputerHand {
+public class ComputerHand extends Hand
+{
     
+    public ComputerHand(Game g)
+    {
+        setGame(g);
+    }
 }
