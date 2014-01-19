@@ -6,10 +6,29 @@
 
 package blackjackgame.model.cards;
 
+import blackjackgame.model.cards.Enums.*;
+
 /**
  *
  * @author Jafnee
  */
 public class Card {
+    private final Suit suit;
+    private final Value value;
     
+    public Card(Suit s, Value v)
+    {
+        suit = s;
+        value = v;
+    }
+    
+    public String GetSuit()
+    {
+        return suit.name();
+    }
+    
+    public String GetValue()
+    {
+        return value.name();
+    }
 }

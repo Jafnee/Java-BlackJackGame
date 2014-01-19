@@ -16,9 +16,10 @@ import blackjackgame.model.computer.ComputerHand;
  */
 public class Game 
 {
-    private PlayerHand pHand;
-    private ComputerHand cHand;
-    private Deck deck;
+    private final PlayerHand pHand;
+    private final ComputerHand cHand;
+    private final Deck deck;
+    //tests
     
     public Game()
     {
@@ -31,5 +32,8 @@ public class Game
     public void startGame() 
     {
         System.out.println("Game Started");
+        //tests
+        deck.populateDeck();
+        deck.printDeck();
     }
 }
