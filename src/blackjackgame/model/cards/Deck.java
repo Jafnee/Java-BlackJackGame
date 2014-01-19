@@ -27,6 +27,7 @@ package blackjackgame.model.cards;
 import blackjackgame.main.Game;
 import blackjackgame.model.cards.Enums.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -37,11 +38,13 @@ public final class Deck
     private final ArrayList<Card> deck;
     private Game game;
     private Card card;
+    private Random generator;
     
     public Deck(Game g)
     {
         setGame(g);
         deck = new ArrayList();
+        generator = new Random();
     }
     
     public void populateDeck(int n)
@@ -75,7 +78,7 @@ public final class Deck
         int index = 0;
         for (Card c : deck)
         {
-            if (c.GetSuit() == s && c.GetValue() == v)
+            if (c.getSuit() == s && c.getValue() == v)
             {
                 index = deck.indexOf(c);
             }
@@ -93,6 +96,13 @@ public final class Deck
         Card c = deck.get(index);
         return c;
     }
+    
+    public int randomCardIndex()
+    {
+        int index;
+        index = generator.nextInt(deck.size());
+        return index;
+    }
     //////////////////////////////
     public void setGame(Game g)
     {
@@ -103,7 +113,7 @@ public final class Deck
     {
         for (Card c : deck)
         {
-            System.out.println(c.GetSuit()+" : "+c.GetValue());
+            System.out.println(c.getSuit()+" : "+c.getValue());
         }
         System.out.println("Number of cards: "+deck.size());
     }

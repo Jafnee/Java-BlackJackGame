@@ -61,9 +61,18 @@ public class Game
         deck.printDeck();
         deck.removeCard(s,v);
         deck.printDeck();
+        transferCard("p",deck.randomCardIndex());
+        transferCard("p",deck.randomCardIndex());
+        transferCard("p",deck.randomCardIndex());
+        pHand.printHand();
+        //deck.printDeck();
+//        System.out.println(deck.randomCardIndex());
+//        System.out.println(deck.getCard(10).getValue().getValue());
+        System.out.println(pHand.getHandValue());
+        System.out.println(pHand.checkHand());
     }
     
-    public void trasferCard(String target, int index)
+    public void transferCard(String target, int index)
     {
         Card c = deck.getCard(index);
         if ("p".equals(target) || "player".equals(target))

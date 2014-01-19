@@ -40,12 +40,12 @@ public class Card {
         value = v;
     }
     
-    public Suit GetSuit()
+    public Suit getSuit()
     {
         return suit;
     }
     
-    public Value GetValue()
+    public Value getValue()
     {
         return value;
     }

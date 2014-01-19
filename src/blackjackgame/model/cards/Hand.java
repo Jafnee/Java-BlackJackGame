@@ -38,7 +38,7 @@ public abstract class Hand
     
     public Hand()
     {
-        
+        cards = new ArrayList();
     }
     
     public void clearHand()
@@ -53,12 +53,63 @@ public abstract class Hand
     
     public int getHandValue()
     {
-        return 2;
+        int total = 0;
+        int aces = 0;
+        for (Card c : cards)
+        {
+            if (c.getValue().getValue() == 11)
+            {
+                aces++;
+            }
+            else
+            {
+            total += c.getValue().getValue();
+            }
+        }
+        for (int i = 0; i < aces; i++)
+            {
+                if (total + 11 <= 21)
+                {
+                    total += 11;
+                }
+                else
+                {
+                    total +=1;
+                }
+            }
+        return total;
+    }
+    
+    public String checkHand()
+    {
+        String status;
+        status = "";
+        if (getHandValue() >21 )
+        {
+            status = "bust";
+        }
+        else if (getHandValue() == 21)
+        {
+            status = "blackjack";
+        }
+        else
+        {
+            status = "safe";
+        }
+        return status;
     }
     
     //////////////////////////////////
     public void setGame(Game g)
     {
         game = g;
+    }
+    /////////////////////////////////TEST
+    public void printHand()
+    {
+        for (Card c : cards)
+        {
+            System.out.println(c.getSuit().name()+" "+c.getValue().name());
+        }
     }
 }
