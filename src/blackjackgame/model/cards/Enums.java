@@ -23,7 +23,7 @@ public class Enums
        TWO,
        THREE,
        FOUR,
-       Five,
+       FIVE,
        SIX,
        SEVEN,
        EIGHT,

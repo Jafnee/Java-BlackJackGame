@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public abstract class Hand 
 {
-    private ArrayList<String> cards;
+    private ArrayList<Card> cards;
     protected Game game;
     
     public Hand()
@@ -28,7 +28,7 @@ public abstract class Hand
         cards.clear();
     }
     
-    public void addCard(String card)
+    public void addCard(Card card)
     {
         cards.add(card);
     }

@@ -22,13 +22,13 @@ public class Card {
         value = v;
     }
     
-    public String GetSuit()
+    public Suit GetSuit()
     {
-        return suit.name();
+        return suit;
     }
     
-    public String GetValue()
+    public Value GetValue()
     {
-        return value.name();
+        return value;
     }
 }

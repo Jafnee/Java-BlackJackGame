@@ -6,7 +6,9 @@
 
 package blackjackgame.main;
 
+import blackjackgame.model.cards.Card;
 import blackjackgame.model.cards.Deck;
+import blackjackgame.model.cards.Enums.*;//TEST
 import blackjackgame.model.player.PlayerHand;
 import blackjackgame.model.computer.ComputerHand;
 
@@ -19,7 +21,9 @@ public class Game
     private final PlayerHand pHand;
     private final ComputerHand cHand;
     private final Deck deck;
-    //tests
+    private int noOfDecks;
+    //TEST
+    Suit s;Value v;
     
     public Game()
     {
@@ -33,7 +37,25 @@ public class Game
     {
         System.out.println("Game Started");
         //tests
-        deck.populateDeck();
+        s = s.CLUB ; v = v.ACE;
+        noOfDecks = 1;
+        deck.populateDeck(noOfDecks);
         deck.printDeck();
+        deck.removeCard(s,v);
+        deck.printDeck();
+    }
+    
+    public void trasferCard(String target, int index)
+    {
+        Card c = deck.getCard(index);
+        if ("p".equals(target) || "player".equals(target))
+        {
+            pHand.addCard(c);
+        }
+        else
+        {
+            cHand.addCard(c);
+        }
+        deck.removeCardWithIndex(index);
     }
 }

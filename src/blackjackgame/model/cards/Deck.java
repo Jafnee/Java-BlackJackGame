@@ -26,16 +26,54 @@ public final class Deck
         deck = new ArrayList();
     }
     
-    public void populateDeck()
+    public void populateDeck(int n)
     {
-       for (Suit s : Suit.values())
-       {
-           for (Value v : Value.values())
-           {
-               card = new Card(s,v);
-               deck.add(card);
-           }
-       }
+        clearDeck();
+        for (int i = 0; i < n; i++)
+        {
+            for (Suit s : Suit.values())
+            {
+                for (Value v : Value.values())
+                {
+                    card = new Card(s,v);
+                    deck.add(card);
+                }
+            }
+        }  
+    }
+    
+    public void clearDeck()
+    {
+        deck.clear();
+    }
+    
+    public void removeCard(Suit s, Value v)
+    {
+        removeCardWithIndex(getCardIndex(s,v));
+    }
+    
+    public int getCardIndex(Suit s, Value v)
+    {
+        int index = 0;
+        for (Card c : deck)
+        {
+            if (c.GetSuit() == s && c.GetValue() == v)
+            {
+                index = deck.indexOf(c);
+            }
+        }
+        return index;
+    }
+    
+    public void removeCardWithIndex(int index)
+    {
+        deck.remove(index);
+    }
+    
+    public Card getCard(int index)
+    {
+        Card c = deck.get(index);
+        return c;
     }
     //////////////////////////////
     public void setGame(Game g)
