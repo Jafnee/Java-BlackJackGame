@@ -55,14 +55,14 @@ public class ContainerPanel extends JPanel
         c.weightx = 10;
         c.weighty = 10;
         c.gridx = 0;
-        c.gridy = 0;
+        c.gridy = 1;
         this.add(pHandPanel, c);
         
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 10;
         c.weighty = 10;
         c.gridx = 0;
-        c.gridy = 1;
+        c.gridy = 0;
         this.add(cHandPanel, c);
     }
     

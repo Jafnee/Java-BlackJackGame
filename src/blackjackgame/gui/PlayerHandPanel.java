@@ -34,6 +34,7 @@ public class PlayerHandPanel extends HandPanel{
     {
         setContainerPanel(cp);
         createHand();
+        changeIcon();
     }
     
 }

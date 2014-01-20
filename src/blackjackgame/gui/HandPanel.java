@@ -24,10 +24,12 @@
 
 package blackjackgame.gui;
 
+import blackjackgame.model.cards.Enums.Suit;
 import java.awt.*;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import sun.awt.SunHints.Value;
 
 /**
  *
@@ -37,31 +39,30 @@ public class HandPanel extends JPanel
 {
     protected ContainerPanel containerPanel;
     JLabel[] cards;
-    int noOfCards = 4;
+    int noOfCards = 5;
     
     public void createHand()
     {
-//        cards[0] = new JLabel();
-//        setLayout(new GridLayout(1,5));
-//        cards[0].setText("SUP YO");
-//        this.add(cards[0]);
-//        cards[1].setText("SUP Y232O");
-//        this.add(cards[1]);
-//        cards[2].setText("11");
-//        add(cards[2]);
-//        add(cards);
-//        add(cards);
+
         cards = new JLabel[noOfCards];
         setLayout(new GridLayout(1,noOfCards));
-        ImageIcon image = new ImageIcon(getClass().getResource("/blackjackgame/gui/images/b1fv.png"));
+        ImageIcon image = new ImageIcon(getClass().getResource("/blackjackgame/gui/images/e.png"));
         for (int i=0;i<noOfCards;i++) {
                 cards[i] = new JLabel(image);
-//                cards[i].setText("Hi");
-//                cards[i].setVerticalAlignment(JLabel.CENTER);
-//                cards[i].setHorizontalAlignment(JLabel.CENTER);
-//                cards[i].setFont(cards[i].getFont().deriveFont(39.0f));
                 this.add(cards[i]);
             }
+    }
+    
+    public ImageIcon imageSelector(Suit s, Value v)
+    {
+        return null;
+        
+    }
+    
+    public void changeIcon()
+    {
+        ImageIcon image2 = new ImageIcon(getClass().getResource("/blackjackgame/gui/images/sk.png"));
+        cards[3].setIcon(image2);
     }
     
     ///////////////////////////
