@@ -54,7 +54,16 @@ public class Game
     public void startGame() 
     {
         System.out.println("Game Started");
-        //tests
+        /*
+        Could ask how many decks to play with.
+        draw 2 cards for player and computer both visible
+        asks player to hit or to stay
+        game will check cards values every turn
+        will check to see if bust or blackjack
+        if either, it will end game
+        if not, it will continue
+        */
+        //TEST
         s = s.CLUB ; v = v.ACE;
         noOfDecks = 1;
         deck.populateDeck(noOfDecks);
