@@ -24,10 +24,45 @@
 
 package blackjackgame.gui;
 
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Jafnee
  */
-public class ButtonPanel {
+public class ButtonPanel extends JPanel implements ActionListener
+{
+    ContainerPanel containerPanel;
+    private JButton hit, stay;
+
+    public ButtonPanel(ContainerPanel cp) 
+    {
+        setContainerPanel(cp);
+        createButtonPanel();
+    }
     
+    public void createButtonPanel()
+    {
+        hit = new JButton("Hit me");
+        stay = new JButton("Stay");
+        this.setLayout(new GridLayout(0,2));
+        add(hit);
+        add(stay);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) 
+    {
+        
+    }
+    
+    ///////////////////////////////////////
+    public void setContainerPanel(ContainerPanel cp)
+    {
+        containerPanel = cp;
+    }
 }

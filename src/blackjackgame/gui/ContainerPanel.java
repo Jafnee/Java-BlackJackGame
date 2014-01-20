@@ -37,12 +37,14 @@ public class ContainerPanel extends JPanel
     private Frame frame;
     private PlayerHandPanel pHandPanel;
     private ComputerHandPanel cHandPanel;
+    private ButtonPanel buttonPanel;
     
     public ContainerPanel(Frame f)
     {
         setFrame(f);
         pHandPanel = new PlayerHandPanel(this);
         cHandPanel = new ComputerHandPanel(this);
+        buttonPanel = new ButtonPanel(this);
         createPanel();
     }
     
@@ -55,8 +57,15 @@ public class ContainerPanel extends JPanel
         c.weightx = 10;
         c.weighty = 10;
         c.gridx = 0;
-        c.gridy = 1;
+        c.gridy = 2;
         this.add(pHandPanel, c);
+        
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 10;
+        c.weighty = 10;
+        c.gridx = 0;
+        c.gridy = 1;
+        this.add(buttonPanel, c);
         
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 10;
@@ -70,5 +79,10 @@ public class ContainerPanel extends JPanel
     public void setFrame(Frame f)
     {
         frame = f;
+    }
+    
+    public PlayerHandPanel getPlayerHandPanel()
+    {
+        return pHandPanel;
     }
 }
