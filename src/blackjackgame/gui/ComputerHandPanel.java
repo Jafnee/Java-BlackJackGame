@@ -28,6 +28,12 @@ package blackjackgame.gui;
  *
  * @author Jafnee
  */
-public class ComputerPanel {
+public class ComputerHandPanel extends HandPanel{
+
+    ComputerHandPanel(ContainerPanel cp) 
+    {
+        setContainerPanel(cp);
+        createHand();
+    }
     
 }

@@ -24,51 +24,49 @@
 
 package blackjackgame.gui;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import java.awt.*;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
  *
  * @author Jafnee
  */
-public class ContainerPanel extends JPanel
+public class HandPanel extends JPanel
 {
-    private Frame frame;
-    private PlayerHandPanel pHandPanel;
-    private ComputerHandPanel cHandPanel;
+    protected ContainerPanel containerPanel;
+    JLabel[] cards;
+    int noOfCards = 4;
     
-    public ContainerPanel(Frame f)
+    public void createHand()
     {
-        setFrame(f);
-        pHandPanel = new PlayerHandPanel(this);
-        cHandPanel = new ComputerHandPanel(this);
-        createPanel();
+//        cards[0] = new JLabel();
+//        setLayout(new GridLayout(1,5));
+//        cards[0].setText("SUP YO");
+//        this.add(cards[0]);
+//        cards[1].setText("SUP Y232O");
+//        this.add(cards[1]);
+//        cards[2].setText("11");
+//        add(cards[2]);
+//        add(cards);
+//        add(cards);
+        cards = new JLabel[noOfCards];
+        setLayout(new GridLayout(1,noOfCards));
+        ImageIcon image = new ImageIcon(getClass().getResource("/blackjackgame/gui/images/b1fv.png"));
+        for (int i=0;i<noOfCards;i++) {
+                cards[i] = new JLabel(image);
+//                cards[i].setText("Hi");
+//                cards[i].setVerticalAlignment(JLabel.CENTER);
+//                cards[i].setHorizontalAlignment(JLabel.CENTER);
+//                cards[i].setFont(cards[i].getFont().deriveFont(39.0f));
+                this.add(cards[i]);
+            }
     }
     
-    public void createPanel()
+    ///////////////////////////
+    public void setContainerPanel(ContainerPanel cp)
     {
-        setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        
-        c.fill = GridBagConstraints.BOTH;
-        c.weightx = 10;
-        c.weighty = 10;
-        c.gridx = 0;
-        c.gridy = 0;
-        this.add(pHandPanel, c);
-        
-        c.fill = GridBagConstraints.BOTH;
-        c.weightx = 10;
-        c.weighty = 10;
-        c.gridx = 0;
-        c.gridy = 1;
-        this.add(cHandPanel, c);
-    }
-    
-    ///////////////////////////////
-    public void setFrame(Frame f)
-    {
-        frame = f;
+        containerPanel = cp;
     }
 }
