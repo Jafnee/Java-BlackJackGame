@@ -24,6 +24,7 @@
 
 package blackjackgame.main;
 
+import blackjackgame.gui.Frame;
 import blackjackgame.model.cards.Card;
 import blackjackgame.model.cards.Deck;
 import blackjackgame.model.cards.Enums.*;//TEST
@@ -36,6 +37,7 @@ import blackjackgame.model.computer.ComputerHand;
  */
 public class Game 
 {
+    private Frame myFrame;
     private final PlayerHand pHand;
     private final ComputerHand cHand;
     private final Deck deck;
@@ -45,6 +47,7 @@ public class Game
     
     public Game()
     {
+        myFrame = new Frame(this);
         pHand = new PlayerHand(this);
         cHand = new ComputerHand(this);
         deck = new Deck(this);

@@ -24,10 +24,37 @@
 
 package blackjackgame.gui;
 
+import blackjackgame.main.Game;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Jafnee
  */
-public class Frame {
+public class Frame extends JFrame
+{
+    private Game game;
+    private ContainerPanel containerPanel;
     
+    public Frame(Game g)
+    {
+        setGame(g);
+        containerPanel = new ContainerPanel(this);
+        createFrame();
+    }
+    
+    public void createFrame()
+    {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
+        add(containerPanel);
+        setTitle("BlackJack Game");
+        setVisible(true);
+    }
+    
+    //////////////////////////////////
+    public void setGame(Game g)
+    {
+        game = g;
+    }
 }

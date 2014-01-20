@@ -24,10 +24,33 @@
 
 package blackjackgame.gui;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Jafnee
  */
-public class ContainerPanel {
+public class ContainerPanel extends JPanel
+{
+    private Frame frame;
     
+    public ContainerPanel(Frame f)
+    {
+        setFrame(f);
+        createPanel();
+    }
+    
+    public void createPanel()
+    {
+        setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+    }
+    
+    ///////////////////////////////
+    public void setFrame(Frame f)
+    {
+        frame = f;
+    }
 }
