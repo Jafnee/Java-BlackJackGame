@@ -57,4 +57,14 @@ public class Frame extends JFrame
     {
         game = g;
     }
+    
+    public Game getGame()
+    {
+        return game;
+    }
+    
+    public ContainerPanel getContainerPanel()
+    {
+        return containerPanel;
+    }
 }

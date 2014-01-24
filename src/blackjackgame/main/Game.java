@@ -30,6 +30,8 @@ import blackjackgame.model.cards.Deck;
 import blackjackgame.model.cards.Enums.*;//TEST
 import blackjackgame.model.player.PlayerHand;
 import blackjackgame.model.computer.ComputerHand;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -66,16 +68,26 @@ public class Game
         if either, it will end game
         if not, it will continue
         */
+        deck.populateDeck(1);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        transferCard("p",deck.randomCardIndex());
+        transferCard("p",deck.randomCardIndex());
+        transferCard("c",deck.randomCardIndex());
+        transferCard("c",deck.randomCardIndex());
         //TEST
-        s = s.CLUB ; v = v.ACE;
-        noOfDecks = 1;
-        deck.populateDeck(noOfDecks);
-        deck.printDeck();
-        deck.removeCard(s,v);
-        deck.printDeck();
-        transferCard("p",deck.randomCardIndex());
-        transferCard("p",deck.randomCardIndex());
-        transferCard("p",deck.randomCardIndex());
+//        s = s.CLUB ; v = v.ACE;
+//        noOfDecks = 1;
+//        deck.populateDeck(noOfDecks);
+//        deck.printDeck();
+//        deck.removeCard(s,v);
+//        deck.printDeck();
+//        transferCard("p",deck.randomCardIndex());
+//        transferCard("p",deck.randomCardIndex());
+//        transferCard("p",deck.randomCardIndex());
         pHand.printHand();
         //deck.printDeck();
 //        System.out.println(deck.randomCardIndex());
@@ -87,14 +99,35 @@ public class Game
     public void transferCard(String target, int index)
     {
         Card c = deck.getCard(index);
+        int index2 = 0;
         if ("p".equals(target) || "player".equals(target))
         {
             pHand.addCard(c);
+            index2 = pHand.getCard().size() - 1;
+            myFrame.getContainerPanel().getPHandPanel().displayCard(target, index2);
         }
         else
         {
             cHand.addCard(c);
+            index2 = cHand.getCard().size() - 1;
+            myFrame.getContainerPanel().getCHandPanel().displayCard(target, index2);
         }
         deck.removeCardWithIndex(index);
+        
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public PlayerHand getPlayerHand()
+    {
+        return pHand;
+    }
+    
+    public ComputerHand getComputerHand()
+    {
+        return cHand;
     }
 }

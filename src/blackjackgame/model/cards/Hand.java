@@ -104,6 +104,11 @@ public abstract class Hand
     {
         game = g;
     }
+    
+    public ArrayList<Card> getCard()
+    {
+        return cards;
+    }
     /////////////////////////////////TEST
     public void printHand()
     {

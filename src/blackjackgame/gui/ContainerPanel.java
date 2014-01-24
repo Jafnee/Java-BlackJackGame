@@ -81,6 +81,21 @@ public class ContainerPanel extends JPanel
         frame = f;
     }
     
+    public Frame getFrame()
+    {
+        return frame;
+    }
+    
+    public PlayerHandPanel getPHandPanel()
+    {
+        return pHandPanel;
+    }
+    
+    public ComputerHandPanel getCHandPanel()
+    {
+        return cHandPanel;
+    }
+    
     public PlayerHandPanel getPlayerHandPanel()
     {
         return pHandPanel;

@@ -24,6 +24,7 @@
 
 package blackjackgame.gui;
 
+import blackjackgame.model.cards.Card;
 import blackjackgame.model.cards.Enums.Suit;
 import java.awt.*;
 import javax.swing.ImageIcon;
@@ -63,6 +64,120 @@ public class HandPanel extends JPanel
     {
         ImageIcon image2 = new ImageIcon(getClass().getResource("/blackjackgame/gui/images/sk.png"));
         cards[3].setIcon(image2);
+    }
+    
+    public void displayCard(String target,int index)
+    {
+        ImageIcon image;
+        String imagePath;
+        String suit;
+        String value;
+        Card card;
+        if (target == "p")
+        {
+           card =  containerPanel.getFrame().getGame().getPlayerHand().getCard().get(index);
+        }
+        else
+        {
+            card =  containerPanel.getFrame().getGame().getComputerHand().getCard().get(index);
+        }
+        
+        //Checking the card's suit
+        suit = getCardSuit(card);
+        
+        //Checking the card's value
+        value = getCardValue(card);
+        
+        //set image path;
+        imagePath = "/blackjackgame/gui/images/"+suit+value+".png";
+        image = new ImageIcon(getClass().getResource(imagePath));
+        cards[index].setIcon(image);
+    }
+    
+    public String getCardSuit(Card card)
+    {
+        String suit = null;
+        
+        if ("DIAMOND".equals(card.getSuit().toString()))
+        {
+            suit = "d";
+        }
+        else if ("CLUB".equals(card.getSuit().toString()))
+        {
+            suit = "c";
+        }
+        else if ("HEART".equals(card.getSuit().toString()))
+        {
+            suit = "h";
+        }
+        else if ("SPADE".equals(card.getSuit().toString()))
+        {
+            suit = "s";
+        }
+        return suit;
+    }
+    
+    public String getCardValue(Card card)
+    {
+        String value = null;
+        
+        if ("ACE".equals(card.getValue().toString()))
+        {
+            value = "1";
+        }
+        else if ("ACE".equals(card.getValue().toString()))
+        {
+            value = "1";
+        }
+        else if ("TWO".equals(card.getValue().toString()))
+        {
+            value = "2";
+        }
+        else if ("THREE".equals(card.getValue().toString()))
+        {
+            value = "3";
+        }
+        else if ("FOUR".equals(card.getValue().toString()))
+        {
+            value = "4";
+        }
+        else if ("FIVE".equals(card.getValue().toString()))
+        {
+            value = "5";
+        }
+        else if ("SIX".equals(card.getValue().toString()))
+        {
+            value = "6";
+        }
+        else if ("SEVEN".equals(card.getValue().toString()))
+        {
+            value = "7";
+        }
+        else if ("EIGHT".equals(card.getValue().toString()))
+        {
+            value = "8";
+        }
+        else if ("NINE".equals(card.getValue().toString()))
+        {
+            value = "9";
+        }
+        else if ("TEN".equals(card.getValue().toString()))
+        {
+            value = "10";
+        }
+        else if ("JACK".equals(card.getValue().toString()))
+        {
+            value = "j";
+        }
+        else if ("QUEEN".equals(card.getValue().toString()))
+        {
+            value = "q";
+        }
+        else if ("KING".equals(card.getValue().toString()))
+        {
+            value = "k";
+        }
+        return value;
     }
     
     ///////////////////////////
