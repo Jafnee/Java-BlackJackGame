@@ -28,6 +28,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -38,6 +39,8 @@ public class ButtonPanel extends JPanel implements ActionListener
 {
     ContainerPanel containerPanel;
     private JButton hit, stay;
+    private JLabel pValue;
+    private JLabel cValue;
 
     public ButtonPanel(ContainerPanel cp) 
     {
@@ -49,9 +52,13 @@ public class ButtonPanel extends JPanel implements ActionListener
     {
         hit = new JButton("Hit me");
         stay = new JButton("Stay");
-        this.setLayout(new GridLayout(0,2));
+        pValue = new JLabel("Player hand value: ");
+        cValue = new JLabel("Computer hand value: ");
+        this.setLayout(new GridLayout(2,2));
         add(hit);
         add(stay);
+        add(pValue);
+        add(cValue);
     }
 
     @Override
