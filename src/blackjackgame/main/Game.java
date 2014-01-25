@@ -58,6 +58,7 @@ public class Game
 
     public void startGame() 
     {
+//        boolean cont = true;
         System.out.println("Game Started");
         /*
         Could ask how many decks to play with.
@@ -69,31 +70,43 @@ public class Game
         if not, it will continue
         */
         deck.populateDeck(1);
-        try {
+        try 
+        {
             Thread.sleep(1000);
-        } catch (InterruptedException ex) {
+        } catch (InterruptedException ex) 
+        {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
-        transferCard("p",deck.randomCardIndex());
-        transferCard("p",deck.randomCardIndex());
-        transferCard("c",deck.randomCardIndex());
-        transferCard("c",deck.randomCardIndex());
-        //TEST
-//        s = s.CLUB ; v = v.ACE;
-//        noOfDecks = 1;
-//        deck.populateDeck(noOfDecks);
-//        deck.printDeck();
-//        deck.removeCard(s,v);
-//        deck.printDeck();
-//        transferCard("p",deck.randomCardIndex());
-//        transferCard("p",deck.randomCardIndex());
-//        transferCard("p",deck.randomCardIndex());
+        firstDraw();
+//        while (true)
+//        {
+//            if ("bust".equals(pHand.checkHand()) || "blackjack".equals(pHand.checkHand()) || pHand.getCard().size() == 5)
+//            {
+//                break;
+//            }
+//        }
+        mainGame();
+    }
+    
+    public void mainGame()
+    {
         pHand.printHand();
-        //deck.printDeck();
-//        System.out.println(deck.randomCardIndex());
-//        System.out.println(deck.getCard(10).getValue().getValue());
         System.out.println(pHand.getHandValue());
         System.out.println(pHand.checkHand());
+    }
+    
+    public void playerTurn()
+    {
+        transferCard("p",deck.randomCardIndex());
+        mainGame();
+    }
+    
+    public void firstDraw()
+    {
+        transferCard("p",deck.randomCardIndex());
+        transferCard("p",deck.randomCardIndex());
+        transferCard("c",deck.randomCardIndex());
+        transferCard("c",deck.randomCardIndex());
     }
     
     public void transferCard(String target, int index)

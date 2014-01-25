@@ -26,11 +26,11 @@ package blackjackgame.gui;
 
 import blackjackgame.model.cards.Card;
 import blackjackgame.model.cards.Enums.Suit;
+import blackjackgame.model.cards.Enums.Value;
 import java.awt.*;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import sun.awt.SunHints.Value;
 
 /**
  *
@@ -73,7 +73,7 @@ public class HandPanel extends JPanel
         String suit;
         String value;
         Card card;
-        if (target == "p")
+        if ("p".equals(target))
         {
            card =  containerPanel.getFrame().getGame().getPlayerHand().getCard().get(index);
         }

@@ -59,12 +59,18 @@ public class ButtonPanel extends JPanel implements ActionListener
         add(stay);
         add(pValue);
         add(cValue);
+        hit.addActionListener(this);
+        stay.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) 
     {
-        
+        if (e.getSource() == hit)
+        {
+            containerPanel.getFrame().getGame().playerTurn();
+            System.out.println("SUP");
+        }
     }
     
     ///////////////////////////////////////
