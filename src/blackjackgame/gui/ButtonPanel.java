@@ -70,6 +70,22 @@ public class ButtonPanel extends JPanel implements ActionListener
         {
             hit.setEnabled(false);
         }
+        else if (b.equals("s"))
+        {
+            stay.setEnabled(false);
+        }
+    }
+    
+    public void enableButton(String b)
+    {
+        if (b.equals("h"))
+        {
+            hit.setEnabled(true);
+        }
+        else if (b.equals("s"))
+        {
+            stay.setEnabled(true);
+        }
     }
     
     public void setHandValue(String target,int val)
@@ -83,7 +99,7 @@ public class ButtonPanel extends JPanel implements ActionListener
             j = pValue;
             s = p;
         }
-        else if("c".equals(target) && val < 21)
+        else if("c".equals(target))
         {
             j = cValue;
             s = c;
@@ -100,6 +116,8 @@ public class ButtonPanel extends JPanel implements ActionListener
         else 
         {
             j.setText(s+"Bust");
+            hit.setEnabled(false);
+            stay.setEnabled(false);
         }
         
     }
@@ -111,6 +129,10 @@ public class ButtonPanel extends JPanel implements ActionListener
         {
             containerPanel.getFrame().getGame().playerTurn();
             //hit.setEnabled(false);
+        }
+        else if (e.getSource() == stay)
+        {
+            containerPanel.getFrame().getGame().computerTurn();
         }
     }
     

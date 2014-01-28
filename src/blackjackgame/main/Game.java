@@ -67,6 +67,8 @@ public class Game
     public void startGame() 
     {
 //      boolean cont = true;
+        myFrame.getContainerPanel().getButtonPanel().disableButton("h");
+        myFrame.getContainerPanel().getButtonPanel().disableButton("s");
         System.out.println("Game Started");
         
         deck.populateDeck(1);
@@ -94,11 +96,7 @@ public class Game
         System.out.println(pHand.getHandValue());
         myFrame.getContainerPanel().getButtonPanel().setHandValue("p", pHand.getHandValue());
         myFrame.getContainerPanel().getButtonPanel().setHandValue("c", cHand.getHandValue());
-        System.out.println(pHand.checkHand());
-        if (pHand.checkHand().equals("bust"))
-        {
-            myFrame.getContainerPanel().getButtonPanel().disableButton("h");
-        }
+        System.out.println(pHand.checkHand());        
     }
     
     public void playerTurn()
@@ -107,12 +105,25 @@ public class Game
         mainGame();
     }
     
+    public void computerTurn()
+    {
+        myFrame.getContainerPanel().getButtonPanel().disableButton("s");
+        myFrame.getContainerPanel().getButtonPanel().disableButton("h");
+        while (cHand.getHandValue() <= pHand.getHandValue())
+        {
+            transferCard("c",deck.randomCardIndex());
+            myFrame.getContainerPanel().getButtonPanel().setHandValue("c",cHand.getHandValue());
+        }
+    }
+    
     public void firstDraw()
     {
         transferCard("p",deck.randomCardIndex());
         transferCard("p",deck.randomCardIndex());
         transferCard("c",deck.randomCardIndex());
         transferCard("c",deck.randomCardIndex());
+        myFrame.getContainerPanel().getButtonPanel().enableButton("h");
+        myFrame.getContainerPanel().getButtonPanel().enableButton("s");
     }
     
     public void transferCard(String target, int index)
