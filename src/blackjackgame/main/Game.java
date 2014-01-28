@@ -55,20 +55,20 @@ public class Game
         deck = new Deck(this);
         
     }
-
+/**
+ * Could ask how many decks to play with.
+ * draw 2 cards for player and computer both visible
+ * asks player to hit or to stay
+ * game will check cards values every turn
+ * will check to see if bust or blackjack
+ * if either, it will end game
+ * if not, it will continue
+ */
     public void startGame() 
     {
-//        boolean cont = true;
+//      boolean cont = true;
         System.out.println("Game Started");
-        /*
-        Could ask how many decks to play with.
-        draw 2 cards for player and computer both visible
-        asks player to hit or to stay
-        game will check cards values every turn
-        will check to see if bust or blackjack
-        if either, it will end game
-        if not, it will continue
-        */
+        
         deck.populateDeck(1);
         try 
         {
@@ -92,7 +92,13 @@ public class Game
     {
         pHand.printHand();
         System.out.println(pHand.getHandValue());
+        myFrame.getContainerPanel().getButtonPanel().setHandValue("p", pHand.getHandValue());
+        myFrame.getContainerPanel().getButtonPanel().setHandValue("c", cHand.getHandValue());
         System.out.println(pHand.checkHand());
+        if (pHand.checkHand().equals("bust"))
+        {
+            myFrame.getContainerPanel().getButtonPanel().disableButton("h");
+        }
     }
     
     public void playerTurn()

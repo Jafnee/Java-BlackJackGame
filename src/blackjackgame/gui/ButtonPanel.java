@@ -52,8 +52,8 @@ public class ButtonPanel extends JPanel implements ActionListener
     {
         hit = new JButton("Hit me");
         stay = new JButton("Stay");
-        pValue = new JLabel("Player hand value: ");
-        cValue = new JLabel("Computer hand value: ");
+        pValue = new JLabel("Player hand value: 0");
+        cValue = new JLabel("Computer hand value: 0");
         this.setLayout(new GridLayout(2,2));
         add(hit);
         add(stay);
@@ -61,6 +61,47 @@ public class ButtonPanel extends JPanel implements ActionListener
         add(cValue);
         hit.addActionListener(this);
         stay.addActionListener(this);
+        
+    }
+    
+    public void disableButton(String b)
+    {
+        if (b.equals("h"))
+        {
+            hit.setEnabled(false);
+        }
+    }
+    
+    public void setHandValue(String target,int val)
+    {
+        JLabel j = null;
+        String s = null;
+        String p = "Player hand value: ";
+        String c = "Computer hand value: ";
+        if ("p".equals(target))
+        {
+            j = pValue;
+            s = p;
+        }
+        else if("c".equals(target) && val < 21)
+        {
+            j = cValue;
+            s = c;
+        }
+        
+        if (val < 21)
+        {
+            j.setText(s+val);
+        }
+        else if (val == 21)
+        {
+            j.setText(s+"Blackjack");
+        }
+        else 
+        {
+            j.setText(s+"Bust");
+        }
+        
     }
 
     @Override
@@ -69,7 +110,7 @@ public class ButtonPanel extends JPanel implements ActionListener
         if (e.getSource() == hit)
         {
             containerPanel.getFrame().getGame().playerTurn();
-            System.out.println("SUP");
+            //hit.setEnabled(false);
         }
     }
     

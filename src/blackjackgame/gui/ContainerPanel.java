@@ -100,4 +100,9 @@ public class ContainerPanel extends JPanel
     {
         return pHandPanel;
     }
+    
+    public ButtonPanel getButtonPanel()
+    {
+        return buttonPanel;
+    }
 }
