@@ -54,6 +54,14 @@ public class HandPanel extends JPanel
             }
     }
     
+    public void clearHand()
+    {
+        ImageIcon image = new ImageIcon(getClass().getResource("/blackjackgame/gui/images/e.png"));
+        for (int i=0;i<noOfCards;i++) {
+                cards[i].setIcon(image);
+            }
+    }
+    
     public ImageIcon imageSelector(Suit s, Value v)
     {
         return null;
@@ -75,11 +83,11 @@ public class HandPanel extends JPanel
         Card card;
         if ("p".equals(target))
         {
-           card =  containerPanel.getFrame().getGame().getPlayerHand().getCard().get(index);
+           card =  containerPanel.getFrame().getGame().getPlayerHand().getCards().get(index);
         }
         else
         {
-            card =  containerPanel.getFrame().getGame().getComputerHand().getCard().get(index);
+            card =  containerPanel.getFrame().getGame().getComputerHand().getCards().get(index);
         }
         
         //Checking the card's suit

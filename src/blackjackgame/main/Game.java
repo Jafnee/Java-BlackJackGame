@@ -30,8 +30,6 @@ import blackjackgame.model.cards.Deck;
 import blackjackgame.model.cards.Enums.*;//TEST
 import blackjackgame.model.player.PlayerHand;
 import blackjackgame.model.computer.ComputerHand;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -39,13 +37,11 @@ import java.util.logging.Logger;
  */
 public class Game 
 {
-    private Frame myFrame;
+    private final Frame myFrame;
     private final PlayerHand pHand;
     private final ComputerHand cHand;
     private final Deck deck;
     private int noOfDecks;
-    //TEST
-    Suit s;Value v;
     
     public Game()
     {
@@ -55,48 +51,38 @@ public class Game
         deck = new Deck(this);
         
     }
-/**
- * Could ask how many decks to play with.
- * draw 2 cards for player and computer both visible
- * asks player to hit or to stay
- * game will check cards values every turn
- * will check to see if bust or blackjack
- * if either, it will end game
- * if not, it will continue
- */
+
     public void startGame() 
     {
-//      boolean cont = true;
         myFrame.getContainerPanel().getButtonPanel().disableButton("h");
         myFrame.getContainerPanel().getButtonPanel().disableButton("s");
+        myFrame.getContainerPanel().getButtonPanel().disableButton("n");
         System.out.println("Game Started");
         
-        deck.populateDeck(1);
-        try 
-        {
-            Thread.sleep(1000);
-        } catch (InterruptedException ex) 
-        {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        deck.populateDeck(1);        
         firstDraw();
-//        while (true)
-//        {
-//            if ("bust".equals(pHand.checkHand()) || "blackjack".equals(pHand.checkHand()) || pHand.getCard().size() == 5)
-//            {
-//                break;
-//            }
-//        }
         mainGame();
     }
     
     public void mainGame()
     {
-        pHand.printHand();
-        System.out.println(pHand.getHandValue());
         myFrame.getContainerPanel().getButtonPanel().setHandValue("p", pHand.getHandValue());
         myFrame.getContainerPanel().getButtonPanel().setHandValue("c", cHand.getHandValue());
-        System.out.println(pHand.checkHand());        
+        myFrame.getContainerPanel().getButtonPanel().disableButton("n");
+        if (pHand.checkHand().equals("bust") || pHand.checkHand().equals("blackjack") || pHand.checkHand().equals("five"))
+        {
+            myFrame.getContainerPanel().getButtonPanel().enableButton("n");
+        }
+    }
+    
+    public void restartGame()
+    {
+        pHand.clearHand();
+        cHand.clearHand();
+        deck.clearDeck();
+        myFrame.getContainerPanel().getCHandPanel().clearHand();
+        myFrame.getContainerPanel().getPHandPanel().clearHand();
+        startGame();
     }
     
     public void playerTurn()
@@ -109,11 +95,13 @@ public class Game
     {
         myFrame.getContainerPanel().getButtonPanel().disableButton("s");
         myFrame.getContainerPanel().getButtonPanel().disableButton("h");
-        while (cHand.getHandValue() <= pHand.getHandValue())
+        myFrame.getContainerPanel().getButtonPanel().disableButton("n");
+        while (cHand.getHandValue() <= pHand.getHandValue() && cHand.getHandValue() <= 21)
         {
             transferCard("c",deck.randomCardIndex());
             myFrame.getContainerPanel().getButtonPanel().setHandValue("c",cHand.getHandValue());
         }
+        myFrame.getContainerPanel().getButtonPanel().enableButton("n");
     }
     
     public void firstDraw()
@@ -124,6 +112,7 @@ public class Game
         transferCard("c",deck.randomCardIndex());
         myFrame.getContainerPanel().getButtonPanel().enableButton("h");
         myFrame.getContainerPanel().getButtonPanel().enableButton("s");
+        
     }
     
     public void transferCard(String target, int index)
@@ -133,22 +122,18 @@ public class Game
         if ("p".equals(target) || "player".equals(target))
         {
             pHand.addCard(c);
-            index2 = pHand.getCard().size() - 1;
+            index2 = pHand.getCards().size() - 1;
             myFrame.getContainerPanel().getPHandPanel().displayCard(target, index2);
         }
         else
         {
             cHand.addCard(c);
-            index2 = cHand.getCard().size() - 1;
+            index2 = cHand.getCards().size() - 1;
             myFrame.getContainerPanel().getCHandPanel().displayCard(target, index2);
         }
         deck.removeCardWithIndex(index);
         
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
     
     public PlayerHand getPlayerHand()

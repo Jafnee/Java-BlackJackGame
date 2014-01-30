@@ -38,7 +38,7 @@ import javax.swing.JPanel;
 public class ButtonPanel extends JPanel implements ActionListener
 {
     ContainerPanel containerPanel;
-    private JButton hit, stay;
+    private JButton hit, stay, newGame;
     private JLabel pValue;
     private JLabel cValue;
 
@@ -52,39 +52,49 @@ public class ButtonPanel extends JPanel implements ActionListener
     {
         hit = new JButton("Hit me");
         stay = new JButton("Stay");
+        newGame = new JButton("New Game");
         pValue = new JLabel("Player hand value: 0");
         cValue = new JLabel("Computer hand value: 0");
-        this.setLayout(new GridLayout(2,2));
+        this.setLayout(new GridLayout(2,3));
         add(hit);
         add(stay);
+        add(newGame);
         add(pValue);
         add(cValue);
         hit.addActionListener(this);
         stay.addActionListener(this);
-        
+        newGame.addActionListener(this);
     }
     
     public void disableButton(String b)
     {
-        if (b.equals("h"))
+        switch(b)
         {
-            hit.setEnabled(false);
-        }
-        else if (b.equals("s"))
-        {
-            stay.setEnabled(false);
+            case "h":
+                hit.setEnabled(false);
+                break;
+            case "s":
+                stay.setEnabled(false);
+                break;
+            case "n":
+                newGame.setEnabled(false);
+                break;
         }
     }
     
     public void enableButton(String b)
     {
-        if (b.equals("h"))
+        switch(b)
         {
-            hit.setEnabled(true);
-        }
-        else if (b.equals("s"))
-        {
-            stay.setEnabled(true);
+            case "h":
+                hit.setEnabled(true);
+                break;
+            case "s":
+                stay.setEnabled(true);
+                break;
+            case "n":
+                newGame.setEnabled(true);
+                break;
         }
     }
     
@@ -105,17 +115,29 @@ public class ButtonPanel extends JPanel implements ActionListener
             s = c;
         }
         
-        if (val < 21)
+        if (val < 21 && containerPanel.getFrame().getGame().getPlayerHand().getCards().size() != 5 && "p".equals(target))
         {
             j.setText(s+val);
         }
+        if (val < 21 && containerPanel.getFrame().getGame().getComputerHand().getCards().size() != 5 && "c".equals(target))
+        {
+            j.setText(s+val);
+        }
+        else if (val > 21)
+        {
+            j.setText(s+val+" Bust");
+            hit.setEnabled(false);
+            stay.setEnabled(false);
+        }        
         else if (val == 21)
         {
-            j.setText(s+"Blackjack");
+            j.setText(s+val+" Blackjack");
+            hit.setEnabled(false);
+            stay.setEnabled(false);
         }
-        else 
+        else if (containerPanel.getFrame().getGame().getPlayerHand().getCards().size() == 5)
         {
-            j.setText(s+"Bust");
+            j.setText(s+val+" Five card win");
             hit.setEnabled(false);
             stay.setEnabled(false);
         }
@@ -133,6 +155,10 @@ public class ButtonPanel extends JPanel implements ActionListener
         else if (e.getSource() == stay)
         {
             containerPanel.getFrame().getGame().computerTurn();
+        }
+        else if (e.getSource() == newGame)
+        {
+            containerPanel.getFrame().getGame().restartGame();
         }
     }
     

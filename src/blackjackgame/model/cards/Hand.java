@@ -92,6 +92,10 @@ public abstract class Hand
         {
             status = "blackjack";
         }
+        else if (cards.size() == 5)
+        {
+            status = "five";
+        }
         else
         {
             status = "safe";
@@ -105,7 +109,7 @@ public abstract class Hand
         game = g;
     }
     
-    public ArrayList<Card> getCard()
+    public ArrayList<Card> getCards()
     {
         return cards;
     }
