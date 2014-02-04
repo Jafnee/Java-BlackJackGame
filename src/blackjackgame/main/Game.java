@@ -27,7 +27,6 @@ package blackjackgame.main;
 import blackjackgame.gui.Frame;
 import blackjackgame.model.cards.Card;
 import blackjackgame.model.cards.Deck;
-import blackjackgame.model.cards.Enums.*;//TEST
 import blackjackgame.model.player.PlayerHand;
 import blackjackgame.model.computer.ComputerHand;
 
@@ -41,7 +40,14 @@ public class Game
     private final PlayerHand pHand;
     private final ComputerHand cHand;
     private final Deck deck;
+    private final Score score;
     private int noOfDecks;
+    
+    //Card conditions
+    public static final int SAFE = 0;
+    public static final int BLACKJACK = 1;
+    public static final int FIVE = 0;
+    public static final int BUST = 0;
     
     public Game()
     {
@@ -49,7 +55,7 @@ public class Game
         pHand = new PlayerHand(this);
         cHand = new ComputerHand(this);
         deck = new Deck(this);
-        
+        score = new Score(this);        
     }
 
     public void startGame() 
@@ -69,9 +75,20 @@ public class Game
         myFrame.getContainerPanel().getButtonPanel().setHandValue("p", pHand.getHandValue());
         myFrame.getContainerPanel().getButtonPanel().setHandValue("c", cHand.getHandValue());
         myFrame.getContainerPanel().getButtonPanel().disableButton("n");
-        if (pHand.checkHand().equals("bust") || pHand.checkHand().equals("blackjack") || pHand.checkHand().equals("five"))
-        {
-            myFrame.getContainerPanel().getButtonPanel().enableButton("n");
+        switch (pHand.checkHand()) {
+            check hand.
+//            case "bust":
+//                score.incrementComputerScore();
+//                myFrame.getContainerPanel().getButtonPanel().enableButton("n");
+//                break;
+//            case "blackjack":
+//                score.incrementPlayerScore();
+//                myFrame.getContainerPanel().getButtonPanel().enableButton("n");
+//                break;
+//            case "five":
+//                score.incrementPlayerScore();
+//                myFrame.getContainerPanel().getButtonPanel().enableButton("n");
+//                break;
         }
     }
     
@@ -82,6 +99,7 @@ public class Game
         deck.clearDeck();
         myFrame.getContainerPanel().getCHandPanel().clearHand();
         myFrame.getContainerPanel().getPHandPanel().clearHand();
+        myFrame.getContainerPanel().getButtonPanel().updateScore(score.getPlayerScore(), score.getPlayerScore());
         startGame();
     }
     
@@ -101,6 +119,14 @@ public class Game
             transferCard("c",deck.randomCardIndex());
             myFrame.getContainerPanel().getButtonPanel().setHandValue("c",cHand.getHandValue());
         }
+        if (cHand.getHandValue() <=21)
+        {
+            score.incrementComputerScore();
+        }
+        else
+        {
+            score.incrementPlayerScore();
+        }
         myFrame.getContainerPanel().getButtonPanel().enableButton("n");
     }
     
@@ -112,6 +138,11 @@ public class Game
         transferCard("c",deck.randomCardIndex());
         myFrame.getContainerPanel().getButtonPanel().enableButton("h");
         myFrame.getContainerPanel().getButtonPanel().enableButton("s");
+        if (cHand.getHandValue() == 21)
+        {
+            score.incrementComputerScore();
+            myFrame.getContainerPanel().getButtonPanel().enableButton("n");
+        }
         
     }
     

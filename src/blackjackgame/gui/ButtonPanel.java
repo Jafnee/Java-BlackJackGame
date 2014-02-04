@@ -39,8 +39,7 @@ public class ButtonPanel extends JPanel implements ActionListener
 {
     ContainerPanel containerPanel;
     private JButton hit, stay, newGame;
-    private JLabel pValue;
-    private JLabel cValue;
+    private JLabel pValue, cValue, score;
 
     public ButtonPanel(ContainerPanel cp) 
     {
@@ -55,15 +54,24 @@ public class ButtonPanel extends JPanel implements ActionListener
         newGame = new JButton("New Game");
         pValue = new JLabel("Player hand value: 0");
         cValue = new JLabel("Computer hand value: 0");
+        score = new JLabel("Player: 0 Computer: 0");
         this.setLayout(new GridLayout(2,3));
         add(hit);
         add(stay);
         add(newGame);
         add(pValue);
         add(cValue);
+        add(score);
         hit.addActionListener(this);
         stay.addActionListener(this);
         newGame.addActionListener(this);
+    }
+    
+    public void updateScore(int pS,int cS)
+    {
+        String p = "Player: ";
+        String c = " Computer: ";
+        score.setText(p+pS+c+cS);
     }
     
     public void disableButton(String b)

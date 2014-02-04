@@ -22,50 +22,51 @@
  * THE SOFTWARE.
  */
 
-package blackjackgame.gui;
-
-import blackjackgame.main.Game;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+package blackjackgame.main;
 
 /**
  *
  * @author Jafnee
  */
-public class Frame extends JFrame
-{
+public final class Score {
     private Game game;
-    private ContainerPanel containerPanel;
+    private int playerScore;
+    private int computerScore;
     
-    public Frame(Game g)
+    public Score(Game g)
     {
         setGame(g);
-        containerPanel = new ContainerPanel(this);
-        createFrame();
+        setupScore();
     }
     
-    public void createFrame()
+    public int getComputerScore()
     {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 600);
-        add(containerPanel);
-        setTitle("BlackJack Game");
-        setVisible(true);
+        return computerScore;
     }
     
-    //////////////////////////////////
+    public int getPlayerScore()
+    {
+        return playerScore;
+    }
+    
+    public void incrementComputerScore()
+    {
+        computerScore++;
+    }
+    
+    public void incrementPlayerScore()
+    {
+        playerScore++;
+    }
+    
+    public void setupScore()
+    {
+        playerScore = 0;
+        computerScore = 0;
+    }
+    
     public void setGame(Game g)
     {
         game = g;
-    }
-    
-    public Game getGame()
-    {
-        return game;
-    }
-    
-    public ContainerPanel getContainerPanel()
-    {
-        return containerPanel;
     }
 }
