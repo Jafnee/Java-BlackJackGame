@@ -80,25 +80,24 @@ public abstract class Hand
         return total;
     }
     
-    public String checkHand()
+    public int checkHand()
     {
-        String status;
-        status = "";
+        int status;
         if (getHandValue() >21 )
         {
-            status = "bust";
+            status = Game.BUST;
         }
         else if (getHandValue() == 21)
         {
-            status = "blackjack";
+            status = Game.BLACKJACK;
         }
         else if (cards.size() == 5)
         {
-            status = "five";
+            status = Game.FIVE;
         }
         else
         {
-            status = "safe";
+            status = Game.SAFE;
         }
         return status;
     }

@@ -44,10 +44,10 @@ public class Game
     private int noOfDecks;
     
     //Card conditions
-    public static final int SAFE = 0;
-    public static final int BLACKJACK = 1;
-    public static final int FIVE = 0;
-    public static final int BUST = 0;
+    public static final int SAFE = 1;
+    public static final int BLACKJACK = 2;
+    public static final int FIVE = 3;
+    public static final int BUST = 4;
     
     public Game()
     {
@@ -63,7 +63,6 @@ public class Game
         myFrame.getContainerPanel().getButtonPanel().disableButton("h");
         myFrame.getContainerPanel().getButtonPanel().disableButton("s");
         myFrame.getContainerPanel().getButtonPanel().disableButton("n");
-        System.out.println("Game Started");
         
         deck.populateDeck(1);        
         firstDraw();
@@ -72,23 +71,29 @@ public class Game
     
     public void mainGame()
     {
+        myFrame.getContainerPanel().getButtonPanel().updateScore(score.getPlayerScore(), score.getComputerScore());
         myFrame.getContainerPanel().getButtonPanel().setHandValue("p", pHand.getHandValue());
         myFrame.getContainerPanel().getButtonPanel().setHandValue("c", cHand.getHandValue());
         myFrame.getContainerPanel().getButtonPanel().disableButton("n");
-        switch (pHand.checkHand()) {
-            check hand.
-//            case "bust":
-//                score.incrementComputerScore();
-//                myFrame.getContainerPanel().getButtonPanel().enableButton("n");
-//                break;
-//            case "blackjack":
-//                score.incrementPlayerScore();
-//                myFrame.getContainerPanel().getButtonPanel().enableButton("n");
-//                break;
-//            case "five":
-//                score.incrementPlayerScore();
-//                myFrame.getContainerPanel().getButtonPanel().enableButton("n");
-//                break;
+        if (pHand.checkHand() == BUST)
+        {
+            score.incrementComputerScore();
+            myFrame.getContainerPanel().getButtonPanel().enableButton("n");
+        }
+        else if (pHand.checkHand() == BLACKJACK)
+        {
+            score.incrementPlayerScore();
+            myFrame.getContainerPanel().getButtonPanel().enableButton("n");
+        }
+        else if (pHand.checkHand() == FIVE)
+        {
+            score.incrementPlayerScore();
+            myFrame.getContainerPanel().getButtonPanel().enableButton("n");
+        }
+        if (cHand.checkHand() == BLACKJACK)
+        {
+            myFrame.getContainerPanel().getButtonPanel().enableButton("n");
+            score.incrementComputerScore();
         }
     }
     
@@ -99,7 +104,6 @@ public class Game
         deck.clearDeck();
         myFrame.getContainerPanel().getCHandPanel().clearHand();
         myFrame.getContainerPanel().getPHandPanel().clearHand();
-        myFrame.getContainerPanel().getButtonPanel().updateScore(score.getPlayerScore(), score.getPlayerScore());
         startGame();
     }
     
@@ -114,16 +118,16 @@ public class Game
         myFrame.getContainerPanel().getButtonPanel().disableButton("s");
         myFrame.getContainerPanel().getButtonPanel().disableButton("h");
         myFrame.getContainerPanel().getButtonPanel().disableButton("n");
-        while (cHand.getHandValue() <= pHand.getHandValue() && cHand.getHandValue() <= 21)
+        while (cHand.getHandValue() <= pHand.getHandValue() && cHand.getHandValue() <= 21 && cHand.getCards().size() <= 5)
         {
             transferCard("c",deck.randomCardIndex());
             myFrame.getContainerPanel().getButtonPanel().setHandValue("c",cHand.getHandValue());
         }
-        if (cHand.getHandValue() <=21)
+        if (cHand.checkHand() != Game.BUST && pHand.getHandValue() < cHand.getHandValue())
         {
             score.incrementComputerScore();
         }
-        else
+        else if (cHand.checkHand() == Game.BUST)
         {
             score.incrementPlayerScore();
         }
@@ -137,13 +141,7 @@ public class Game
         transferCard("c",deck.randomCardIndex());
         transferCard("c",deck.randomCardIndex());
         myFrame.getContainerPanel().getButtonPanel().enableButton("h");
-        myFrame.getContainerPanel().getButtonPanel().enableButton("s");
-        if (cHand.getHandValue() == 21)
-        {
-            score.incrementComputerScore();
-            myFrame.getContainerPanel().getButtonPanel().enableButton("n");
-        }
-        
+        myFrame.getContainerPanel().getButtonPanel().enableButton("s");   
     }
     
     public void transferCard(String target, int index)
