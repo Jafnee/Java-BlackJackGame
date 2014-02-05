@@ -30,6 +30,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -39,7 +42,8 @@ public class ButtonPanel extends JPanel implements ActionListener
 {
     ContainerPanel containerPanel;
     private JButton hit, stay, newGame;
-    private JLabel pValue, cValue, score;
+    private JLabel BLANK, pValue, cValue, score, money, betAmmount;
+    private JSlider betSlider;
 
     public ButtonPanel(ContainerPanel cp) 
     {
@@ -49,22 +53,41 @@ public class ButtonPanel extends JPanel implements ActionListener
     
     public void createButtonPanel()
     {
+        BLANK = new JLabel();
         hit = new JButton("Hit me");
         stay = new JButton("Stay");
         newGame = new JButton("New Game");
         pValue = new JLabel("Player hand value: 0");
         cValue = new JLabel("Computer hand value: 0");
         score = new JLabel("Player: 0 Computer: 0");
-        this.setLayout(new GridLayout(2,3));
+        money = new JLabel("Money: $1000");
+        betSlider = new JSlider(0,1000,100);
+        betAmmount = new JLabel("Bet: $100");
+        this.setLayout(new GridLayout(3,3));
         add(hit);
         add(stay);
         add(newGame);
         add(pValue);
         add(cValue);
         add(score);
+        add(money);
+        add(betSlider);
+        add(betAmmount);
         hit.addActionListener(this);
         stay.addActionListener(this);
         newGame.addActionListener(this);
+        betSlider.setMinorTickSpacing(100);
+        betSlider.setMajorTickSpacing(200);
+//        betSlider.setPaintLabels(true);
+        betSlider.setPaintTicks(true);
+        betSlider.addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                String s = "Bet: $";
+                betAmmount.setText(s+betSlider.getValue());
+            }
+        });
     }
     
     public void updateScore(int pS,int cS)
