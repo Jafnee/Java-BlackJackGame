@@ -33,12 +33,12 @@ import javax.swing.JPanel;
  *
  * @author Jafnee
  */
-public class ContainerPanel extends JPanel
+public final class ContainerPanel extends JPanel
 {
     private Frame frame;
-    private PlayerHandPanel pHandPanel;
-    private ComputerHandPanel cHandPanel;
-    private ButtonPanel buttonPanel;
+    private final PlayerHandPanel pHandPanel;
+    private final ComputerHandPanel cHandPanel;
+    private final ButtonPanel buttonPanel;
     
     public ContainerPanel(Frame f)
     {
