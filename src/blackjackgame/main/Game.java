@@ -71,6 +71,7 @@ public class Game
     
     public void mainGame()
     {
+        disableStay();
         myFrame.getContainerPanel().getButtonPanel().updateScore(score.getPlayerScore(), score.getComputerScore());
         myFrame.getContainerPanel().getButtonPanel().setHandValue("p", pHand.getHandValue());
         myFrame.getContainerPanel().getButtonPanel().setHandValue("c", cHand.getHandValue());
@@ -94,6 +95,28 @@ public class Game
         {
             myFrame.getContainerPanel().getButtonPanel().enableButton("n");
             score.incrementComputerScore();
+        }
+    }
+    
+    public boolean isCHigherthanP()
+    {
+        boolean t = false;
+        if (cHand.getHandValue() > pHand.getHandValue())
+        {
+            t = true;
+        }
+        return t;
+    }
+    
+    public void disableStay()
+    {
+        if (this.isCHigherthanP())
+        {
+            myFrame.getContainerPanel().getButtonPanel().disableButton("s");
+        }
+        else
+        {
+            myFrame.getContainerPanel().getButtonPanel().enableButton("s");
         }
     }
     

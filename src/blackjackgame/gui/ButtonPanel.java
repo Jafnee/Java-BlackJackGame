@@ -38,7 +38,7 @@ import javax.swing.event.ChangeListener;
  *
  * @author Jafnee
  */
-public class ButtonPanel extends JPanel implements ActionListener
+public class ButtonPanel extends JPanel implements ActionListener, ChangeListener
 {
     ContainerPanel containerPanel;
     private JButton hit, stay, newGame;
@@ -80,15 +80,14 @@ public class ButtonPanel extends JPanel implements ActionListener
         betSlider.setMajorTickSpacing(200);
 //        betSlider.setPaintLabels(true);
         betSlider.setPaintTicks(true);
-        betSlider.addChangeListener(new ChangeListener() {
-
-            @Override
+        betSlider.addChangeListener(this);
+    }
+    
+    @Override
             public void stateChanged(ChangeEvent e) {
                 String s = "Bet: $";
                 betAmmount.setText(s+betSlider.getValue());
             }
-        });
-    }
     
     public void updateScore(int pS,int cS)
     {

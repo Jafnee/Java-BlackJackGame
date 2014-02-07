@@ -29,5 +29,12 @@ package blackjackgame.main;
  * @author Jafnee
  */
 public class Betting {
+    Game game;
+    int money, bet;
     
+    public Betting(Game g)
+    {
+        game = g;
+        money = 1000;
+    }
 }
