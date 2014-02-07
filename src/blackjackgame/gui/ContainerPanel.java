@@ -24,6 +24,7 @@
 
 package blackjackgame.gui;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JPanel;
@@ -73,6 +74,8 @@ public class ContainerPanel extends JPanel
         c.gridx = 0;
         c.gridy = 0;
         this.add(cHandPanel, c);
+        
+        this.setBackground(new Color(22,122,9));
     }
     
     ///////////////////////////////

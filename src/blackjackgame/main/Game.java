@@ -76,6 +76,11 @@ public class Game
         myFrame.getContainerPanel().getButtonPanel().setHandValue("p", pHand.getHandValue());
         myFrame.getContainerPanel().getButtonPanel().setHandValue("c", cHand.getHandValue());
         myFrame.getContainerPanel().getButtonPanel().disableButton("n");
+        this.checkHands();
+    }
+    
+    public void checkHands()
+    {
         if (pHand.checkHand() == BUST)
         {
             score.incrementComputerScore();
@@ -101,7 +106,7 @@ public class Game
     public boolean isCHigherthanP()
     {
         boolean t = false;
-        if (cHand.getHandValue() > pHand.getHandValue())
+        if (cHand.getHandValue() >= pHand.getHandValue())
         {
             t = true;
         }

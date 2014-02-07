@@ -24,9 +24,11 @@
 
 package blackjackgame.gui;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -63,7 +65,18 @@ public class ButtonPanel extends JPanel implements ActionListener, ChangeListene
         money = new JLabel("Money: $1000");
         betSlider = new JSlider(0,1000,100);
         betAmmount = new JLabel("Bet: $100");
-        this.setLayout(new GridLayout(3,3));
+        this.setLayout(new GridLayout(3,3,-1,-1));
+        
+        hit.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        stay.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        newGame.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        pValue.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        cValue.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        score.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        money.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        betSlider.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        betAmmount.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        
         add(hit);
         add(stay);
         add(newGame);
@@ -81,6 +94,8 @@ public class ButtonPanel extends JPanel implements ActionListener, ChangeListene
 //        betSlider.setPaintLabels(true);
         betSlider.setPaintTicks(true);
         betSlider.addChangeListener(this);
+        betSlider.setOpaque(false);
+        this.setBackground(new Color(255,255,255));
     }
     
     @Override

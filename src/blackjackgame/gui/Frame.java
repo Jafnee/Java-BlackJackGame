@@ -25,6 +25,7 @@
 package blackjackgame.gui;
 
 import blackjackgame.main.Game;
+import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -42,6 +43,7 @@ public class Frame extends JFrame
         setGame(g);
         containerPanel = new ContainerPanel(this);
         createFrame();
+        getContentPane().setBackground(Color.YELLOW);
     }
     
     public void createFrame()

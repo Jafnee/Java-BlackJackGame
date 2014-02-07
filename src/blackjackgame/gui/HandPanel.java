@@ -52,6 +52,7 @@ public class HandPanel extends JPanel
                 cards[i] = new JLabel(image);
                 this.add(cards[i]);
             }
+        this.setBackground(new Color(22,122,9));
     }
     
     public void clearHand()
