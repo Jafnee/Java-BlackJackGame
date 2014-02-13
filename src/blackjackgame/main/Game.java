@@ -31,7 +31,9 @@ import blackjackgame.model.player.PlayerHand;
 import blackjackgame.model.computer.ComputerHand;
 
 /**
- *
+ *Game needs to be updated to follow a proper set of Blackjack rules:
+ * http://www.blackjackinfo.com/blackjack-rules.php
+ * 
  * @author Jafnee
  */
 public class Game 
@@ -67,6 +69,9 @@ public class Game
         deck.populateDeck(1);        
         firstDraw();
         mainGame();
+        
+        myFrame.getContainerPanel().getButtonPanel().setFocusable(true);
+        myFrame.getContainerPanel().getButtonPanel().requestFocusInWindow();
     }
     
     public void mainGame()

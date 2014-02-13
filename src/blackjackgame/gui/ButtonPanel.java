@@ -28,6 +28,8 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -40,7 +42,7 @@ import javax.swing.event.ChangeListener;
  *
  * @author Jafnee
  */
-public class ButtonPanel extends JPanel implements ActionListener, ChangeListener
+public class ButtonPanel extends JPanel implements ActionListener, ChangeListener, KeyListener
 {
     ContainerPanel containerPanel;
     private JButton hit, stay, newGame;
@@ -86,6 +88,7 @@ public class ButtonPanel extends JPanel implements ActionListener, ChangeListene
         add(money);
         add(betSlider);
         add(betAmmount);
+        this.addKeyListener(this);
         hit.addActionListener(this);
         stay.addActionListener(this);
         newGame.addActionListener(this);
@@ -211,5 +214,25 @@ public class ButtonPanel extends JPanel implements ActionListener, ChangeListene
     public void setContainerPanel(ContainerPanel cp)
     {
         containerPanel = cp;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        if (e.getKeyChar() == 'q')
+        {
+            containerPanel.getFrame().getGame().playerTurn();
+        }
+        else if (e.getKeyChar() == 'w')
+        {
+            containerPanel.getFrame().getGame().computerTurn();
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
     }
 }

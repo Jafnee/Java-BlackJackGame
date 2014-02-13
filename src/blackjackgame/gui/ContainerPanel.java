@@ -68,6 +68,8 @@ public final class ContainerPanel extends JPanel
         c.gridy = 1;
         this.add(buttonPanel, c);
         
+        
+        
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 10;
         c.weighty = 10;
