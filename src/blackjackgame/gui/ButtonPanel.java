@@ -64,10 +64,10 @@ public class ButtonPanel extends JPanel implements ActionListener, ChangeListene
         pValue = new JLabel("Player hand value: 0");
         cValue = new JLabel("Computer hand value: 0");
         score = new JLabel("Player: 0 Computer: 0");
-        money = new JLabel("Money: $1000");
-        betSlider = new JSlider(0,1000,100);
-        betAmmount = new JLabel("Bet: $100");
-        this.setLayout(new GridLayout(3,3,-1,-1));
+        //money = new JLabel("Money: $1000");
+        //betSlider = new JSlider(0,1000,100);
+        //betAmmount = new JLabel("Bet: $100");
+        this.setLayout(new GridLayout(2,3,-1,-1));
         
         hit.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         stay.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -75,9 +75,9 @@ public class ButtonPanel extends JPanel implements ActionListener, ChangeListene
         pValue.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         cValue.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         score.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        money.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        betSlider.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        betAmmount.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        //money.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        //betSlider.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        //betAmmount.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         
         add(hit);
         add(stay);
@@ -85,19 +85,19 @@ public class ButtonPanel extends JPanel implements ActionListener, ChangeListene
         add(pValue);
         add(cValue);
         add(score);
-        add(money);
-        add(betSlider);
-        add(betAmmount);
+        //add(money);
+        //add(betSlider);
+        //add(betAmmount);
         this.addKeyListener(this);
         hit.addActionListener(this);
         stay.addActionListener(this);
         newGame.addActionListener(this);
-        betSlider.setMinorTickSpacing(100);
-        betSlider.setMajorTickSpacing(200);
+        //betSlider.setMinorTickSpacing(100);
+        //betSlider.setMajorTickSpacing(200);
 //        betSlider.setPaintLabels(true);
-        betSlider.setPaintTicks(true);
-        betSlider.addChangeListener(this);
-        betSlider.setOpaque(false);
+        //betSlider.setPaintTicks(true);
+        //betSlider.addChangeListener(this);
+        //betSlider.setOpaque(false);
         this.setBackground(new Color(255,255,255));
     }
     
